@@ -27,13 +27,13 @@ const bookingSchema = new mongoose.Schema<IBooking>(
     carId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Car",
-      required: true,
+      
     },
 
     driverId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Driver",
-      required: true,
+      
     },
 
     pickupDate: {
