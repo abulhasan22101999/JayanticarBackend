@@ -17,6 +17,10 @@ const carSchema = new mongoose.Schema(
       unique: true,
     },
 
+    cartype:{
+      type:String
+    },
+
     // 🔥 ownership logic
     ownership: {
       type: String,

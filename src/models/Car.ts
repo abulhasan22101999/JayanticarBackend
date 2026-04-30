@@ -14,7 +14,7 @@ const CarSchema: Schema = new Schema(
     carNumber: {
       type: String,
       required: true,
-      unique: true, // duplicate number allow korbe na
+      unique: true, 
     },
     carModel: {
       type: String,

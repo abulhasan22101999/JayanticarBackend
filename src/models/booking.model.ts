@@ -48,32 +48,32 @@ const bookingSchema = new mongoose.Schema<IBooking>(
 
     pickupLocation: {
       type: String,
-      required: true,
+      
     },
 
     dropLocation: {
       type: String,
-      required: true,
+      
     },
 
     guestName: {
       type: String,
-      required: true,
+      
     },
 
     guestMobileNo: {
       type: String,
-      required: true,
+    
     },
 
     company: String,
     reportingAddress: String,
     reportingTime: String,
 
-    status: {
+   status: {
   type: String,
-  enum: ["booked", "complete", "cancelled"],  // 👈
-  default: "booked",
+  enum: ["pending", "booked", "complete", "cancelled"],
+  default: "pending",
 },
   },
   { timestamps: true }

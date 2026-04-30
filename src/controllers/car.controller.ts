@@ -3,7 +3,7 @@ import { Car } from "../models/car.model";
 
 export const addCar = async (req: Request, res: Response) => {
   try {
-    const { carName, carModel, carNumber, ownership } = req.body;
+    const { carName, carModel, carNumber,cartype, ownership } = req.body;
 
     if (!carName || !carModel || !carNumber) {
       return res.status(400).json({
@@ -15,6 +15,7 @@ export const addCar = async (req: Request, res: Response) => {
       carName,
       carModel,
       carNumber,
+      cartype,
       // 🔥 only "others" গেলে others, otherwise self
       ownership: ownership === "others" ? "others" : "self",
     });
