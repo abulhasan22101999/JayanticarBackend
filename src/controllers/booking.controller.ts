@@ -165,20 +165,30 @@ export const deleteBooking = async (req: Request, res: Response) => {
 };
 
 
-// ✅ SEARCH CARS
+// ✅ SEARCH CARS — q searches name/number/model, cartype filters separately
 export const searchCars = async (req: Request, res: Response) => {
   try {
     const q = (req.query.q as string) || "";
+    const cartype = (req.query.cartype as string) || "";
 
-    const cars = await Car.find({
-      status: "active",
-      $or: [
+    // Build query
+    const query: Record<string, any> = { status: "active" };
+
+    // If cartype provided → exact match (case-insensitive)
+    if (cartype.trim()) {
+      query.cartype = { $regex: cartype.trim(), $options: "i" };
+    }
+
+    // If q provided → search name, number, model
+    if (q.trim()) {
+      query.$or = [
         { carNumber: { $regex: q, $options: "i" } },
         { carName: { $regex: q, $options: "i" } },
         { carModel: { $regex: q, $options: "i" } },
-        { cartype: { $regex: q, $options: "i" } },
-      ],
-    }).limit(10);
+      ];
+    }
+
+    const cars = await Car.find(query).limit(10);
 
     res.json({ data: cars });
   } catch (error) {

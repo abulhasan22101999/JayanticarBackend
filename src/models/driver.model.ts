@@ -20,6 +20,7 @@ const driverSchema = new mongoose.Schema(
       
     },
 
+
     status: {
       type: String,
       enum: ["active", "inactive","booked"],
@@ -30,3 +31,4 @@ const driverSchema = new mongoose.Schema(
 );
 
 export const Driver = mongoose.model("Driver", driverSchema);
+
